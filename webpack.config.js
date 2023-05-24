@@ -14,12 +14,12 @@ const JS_FILENAME = `app.${version}.[chunkhash].js`
 
 module.exports = {
   mode: 'development',
-  entry: `./src/index.tsx`,
+  entry: `${APP_ENTRY}/index.tsx`,
   output: {
     filename: JS_FILENAME,
     chunkFilename: '[name].[hash].js',
     path: `${PROJECT_ROOT}/build`,
-    publicPath: `/plink`,
+    publicPath: '/', // 실제 배포될 directory, webpack-dev-server로 local test할 경우엔 생략하거나 '/'
   },
   module: {
     rules: [
@@ -47,7 +47,7 @@ module.exports = {
     })
   ],
   devServer: {
-    port: 3005,
+    port: 3009,
     hot: true,
     open: true,
     historyApiFallback: true, // connect-history-api-fallback error 방지
